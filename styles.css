@@ -177,7 +177,7 @@ button {
 /* --------------------------------------------------------------------- */
 
   .page-section {
-    display: none;
+    display: none;  /* set it to none */
     max-width: 800px;
     margin: 2rem auto;
     background: var(--surface-color);

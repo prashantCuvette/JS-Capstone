@@ -10,3 +10,6 @@
 - json-server
 - local storage
 - different filters
+
+
+Hamburger Icon: ☰
