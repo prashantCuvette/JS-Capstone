@@ -1,3 +1,72 @@
+## Day 1 HTML, CSS, JS and db.json
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Task and Notes</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="main-header">
+      <div class="logo">My Project</div>
+      <button class="hamburger" id="hamburger-button">☰</button>
+      <nav id="desktop-nav">
+        <a href="#dashboard" id="nav-dashboard">Dashboard</a>
+        <a href="#tasks" id="nav-tasks">Tasks</a>
+        <a href="#notes" id="nav-notes">Notes</a>
+        <span id="user-info">UserInfo</span>
+        <!-- add none to below button -->
+        <button id="logout-btn" style="display: none">Logout</button>
+      </nav>
+      <!-- Mobile design -->
+    </header>
+    <main>
+      <section id="login-section" class="page-section">
+        <h2>Login</h2>
+        <form id="login-form" class="auth-form">
+          <input id="login-email" type="email" placeholder="Email" required />
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+          <p>Don't have an account? <a href="#signup">Sign Up</a></p>
+          <div id="login-errors" class="auth-error"></div>
+        </form>
+      </section>
+      <section id="signup-section" class="page-section">
+        <h2>Sign Up</h2>
+        <form id="signup-form" class="auth-form">
+          <input
+            id="signup-username"
+            type="text"
+            placeholder="Username"
+            required
+          />
+          <input id="signup-email" type="email" placeholder="Email" required />
+          <input
+            id="signup-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+          <p>Already have an account? <a href="#login">Login</a></p>
+          <div id="signup-errors" class="auth-error"></div>
+        </form>
+      </section>
+    </main>
+  </body>
+  <script src="./app.js"></script>
+</html>
+```
+
+```css
 :root {
   --primary-color: #6366f1;
   --surface-color: #fff;
@@ -15,7 +84,6 @@ body {
   color: #222;
 }
 
-
 header {
   height: var(--header-height);
   background: var(--primary-color);
@@ -27,7 +95,6 @@ header {
   box-shadow: var(--box-shadow);
 }
 
-/* Desktop Nav CSS Starts Here */
 nav {
   display: flex;
   gap: 1.5rem;
@@ -59,9 +126,6 @@ button {
   font-family: inherit;
 }
 
-/* Desktop Nav CSS Ends Here */
-
-/* Mobile Nav CSS Starts Here */
 .hamburger {
   display: none;
   background: none;
@@ -119,10 +183,7 @@ button {
   font-weight: bold;
   text-decoration: underline;
 }
-/* Mobile CSS Ends Here */
 
-/* Media Query for Nav Bar */
-/* Below CSS Only Applied if Screen Width is <= 800px */
 @media (max-width: 800px) {
   header {
     flex-direction: column;
@@ -148,9 +209,6 @@ button {
   }
 }
 
-/* Media Query for Nav Bar Ends Here */
-
-/* Desktop Logout Button CSS */
 #logout-btn {
   background: #dc3545;
   color: #fff;
@@ -166,9 +224,8 @@ button {
 #logout-btn:hover {
   background: #b91c1c;
 }
-/* Desktop Logout Button CSS Ends Here */
 
-/* Mobile Logout Button CSS */
+/* Logout button (mobile) */
 .mobile-user-info button {
   background: #dc3545;
   color: #fff;
@@ -183,16 +240,11 @@ button {
 .mobile-user-info button:hover {
   background: #b91c1c;
 }
-/* Mobile Logout Button CSS Ends Here */
 
-/* ---------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
 
-
-/* Main CSS Starts Here */
-
-/* CSS for Login and Signup */
 .page-section {
-  display: block;  /* chanage to none */
+  display: none; /* set it to none */
   max-width: 800px;
   margin: 2rem auto;
   background: var(--surface-color);
@@ -260,5 +312,56 @@ button {
     max-width: 100%;
   }
 }
+```
 
-/* CSS for Login and Signup Ends Here */
+```javascript
+let currentUser = true;
+
+const sections = {
+  login: document.getElementById("login-section"),
+  signup: document.getElementById("signup-section"),
+
+  // task
+  // notes
+};
+
+function renderHeader() {
+  const userInfo = document.getElementById("user-info");
+  const logoutButton = document.getElementById("logout-btn");
+  const desktopNavLinks = document.getElementById("desktop-nav");
+
+  if (currentUser === null) {
+    userInfo.textContent = "";
+    logoutButton.style.display = "none";
+    desktopNavLinks.querySelector("nav-dashboard").style.display = "none";
+    desktopNavLinks.querySelector("#nav-tasks").style.display = "none";
+    desktopNavLinks.querySelector("#nav-notes").style.display = "none";
+  } else {
+    userInfo.textContent = "ranom@gmail.com";
+    logoutButton.style.display = "inline";
+    desktopNavLinks.querySelector("#nav-dashboard").style.display = "inline";
+    desktopNavLinks.querySelector("#nav-tasks").style.display = "inline";
+    desktopNavLinks.querySelector("#nav-notes").style.display = "inline";
+  }
+}
+
+renderHeader();
+
+// Homework
+function renderSignUp() {}
+
+renderSignUp();
+
+// homework
+function renderLogIn() {}
+
+renderLogIn();
+```
+
+```json
+{
+  "users": [],
+  "tasks": [],
+  "notes": []
+}
+```

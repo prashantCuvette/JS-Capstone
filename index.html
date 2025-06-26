@@ -8,27 +8,35 @@
   </head>
   <body>
     <header id="main-header">
+      <!-- Logo -->
       <div class="logo">My Project</div>
 
-      <button class="hamburger" id="hamburger-button">☰</button>
-
+      <!-- Desktop Navigation Bar -->
       <nav id="desktop-nav">
-        <a href="#dashboard" id="nav-dashboard">Dashboard</a>
+        <a href="#dashboard" id="nav-dashboard">Dashboardsssss</a>
         <a href="#tasks" id="nav-tasks">Tasks</a>
         <a href="#notes" id="nav-notes">Notes</a>
-        <span id="user-info">UserInfo</span>
-
+        <span id="user-info"></span>
         <!-- add none to below button -->
-        <button id="logout-btn" style="display: none">LogOut</button>
+        <button id="logout-btn" style="display: none">Logout</button>
       </nav>
 
-      <!-- Mobile design -->
+      <!-- Mobile Navigation Bar -->
+      <button class="hamburger" id="hamburger-button">☰</button>
+      <div id="mobile-nav" class="mobile-nav" style="display: none">
+        <a href="#dashboard" id="mobile-nav-dashboard">Dashboard</a>
+        <a href="#tasks" id="mobile-nav-tasks">Tasks</a>
+        <a href="#notes" id="mobile-nav-notes">Notes</a>
+        <div class="mobile-user-info">
+          <span id="mobile-user-email"></span>
+          <button id="mobile-logout-btn">Logout</button>
+        </div>
     </header>
 
     <main>
+      <!-- Section 2 LogIn Form -->
       <section id="login-section" class="page-section">
         <h2>Login</h2>
-
         <form id="login-form" class="auth-form">
           <input id="login-email" type="email" placeholder="Email" required />
           <input
@@ -39,17 +47,20 @@
           />
           <button type="submit">Login</button>
           <p>Don't have an account? <a href="#signup">Sign Up</a></p>
-
           <div id="login-errors" class="auth-error"></div>
         </form>
       </section>
 
+      <!-- Section 2 SignUp Form -->
       <section id="signup-section" class="page-section">
         <h2>Sign Up</h2>
-
-
         <form id="signup-form" class="auth-form">
-          <input id="signup-username" type="text" placeholder="Username" required />
+          <input
+            id="signup-username"
+            type="text"
+            placeholder="Username"
+            required
+          />
           <input id="signup-email" type="email" placeholder="Email" required />
           <input
             id="signup-password"
@@ -57,18 +68,12 @@
             placeholder="Password"
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit">Signup</button>
           <p>Already have an account? <a href="#login">Login</a></p>
-
           <div id="signup-errors" class="auth-error"></div>
         </form>
-
-
       </section>
     </main>
-
-
   </body>
-
   <script src="./app.js"></script>
 </html>
