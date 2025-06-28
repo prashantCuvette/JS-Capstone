@@ -1,27 +1,9 @@
 {
   "users": [
     {
-      "id": "ceeb",
+      "id": "78dc",
       "userName": "Prashant",
       "email": "p@p.p",
-      "password": "123"
-    },
-    {
-      "id": "7e22",
-      "userName": "Test",
-      "email": "test@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "d75a",
-      "userName": "sdc",
-      "email": "a@a.com",
-      "password": "123"
-    },
-    {
-      "id": "6f43",
-      "userName": "Prashant",
-      "email": "a1@a.com",
       "password": "123"
     }
   ],

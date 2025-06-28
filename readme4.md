@@ -1,3 +1,6 @@
+# Day 4 HTML CSS JavaScript
+
+```javascript
 let currentUser = null;
 
 const sections = {
@@ -200,6 +203,4 @@ function setActiveNavLink() {
         }
     });
 }
-
-
-
+```

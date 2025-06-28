@@ -192,7 +192,7 @@ button {
 
 /* CSS for Login and Signup */
 .page-section {
-  display: block;  /* chanage to none */
+  display: none;  /* chanage to none */
   max-width: 800px;
   margin: 2rem auto;
   background: var(--surface-color);
