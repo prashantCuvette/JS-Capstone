@@ -3,7 +3,8 @@ let currentUser = null;
 const sections = {
     login: document.getElementById('login-section'),
     signup: document.getElementById('signup-section'),
-    dashboard: document.getElementById('dashboard-section')
+    dashboard: document.getElementById('dashboard-section'),
+    tasks: document.getElementById('tasks-section'),
 
     // task
     // notes
@@ -146,8 +147,8 @@ function route() {
                 // renderNotes();
                 break;
             default:
-            // showSections('dashboard');
-            // renderDashboard();
+                showSections('dashboard');
+                renderDashboard();
         }
 
     } else {
@@ -195,11 +196,91 @@ function setActiveNavLink() {
     const navData = Object.values(navLinks);
     navData.forEach((item) => {
         item.classList.remove('active');
-        if(hash.includes(item.getAttribute('href'))) {
+        if (hash.includes(item.getAttribute('href'))) {
             item.classList.add('active');
         }
     });
 }
+
+function renderTasks() {
+    let users = [];
+    let tasks = [];
+
+    Promise.all([
+        fetch(`http://localhost:3000/users`).then(res => res.json()),
+        fetch(`http://localhost:3000/tasks?userId=${currentUser.id}`).then(res => res.json())
+    ]).then(([fetchedUsers, fetchedTasks]) => {
+        users = fetchedUsers;
+        tasks = fetchedTasks;
+    }).catch((err) => console.log("Some Error Occurred"))
+
+    const addTaskButton = document.getElementById('add-task-btn');
+
+    addTaskButton.addEventListener('click', () => {
+        const modal = document.getElementById('task-modal');
+        const form = document.getElementById('add-task-form');
+
+        modal.style.display = "flex";
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const newTask = {
+                userId: currentUser.id,
+                title: document.getElementById('task-title').value,
+                description: document.getElementById('task-desc'),
+                priority: document.getElementById('task-priority').value,
+                color: document.getElementById('task-color').value,
+                createdAt: new Date().toISOString()
+            };
+
+            await addTask(newTask);
+        });
+
+
+        // saving to local storage if data got saved in database
+        async function addTask(task) {
+            const savedTask = syncTaskToServer(task);
+            if(savedTask) {
+                tasks.push(savedTask);
+                let storageTask = [...tasks]
+                localStorage.setItem('tasks', JSON.stringify(storageTask))
+
+            }
+        }
+
+
+        // first my data should be saved on the database then only save in local storage
+        async function syncTaskToServer(task) {
+            try {
+                const res = await fetch('http://localhost:3000/tasks', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(task)
+                })
+
+                return await res.json();
+
+            } catch(err) {
+                console.log("Failed to Store tasks on server", err)
+                return null;
+            }
+        }
+
+
+
+    })
+
+    function renderList() {
+        
+    }
+
+
+
+
+
+}
+
+renderTasks()
 
 
 
